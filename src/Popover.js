@@ -50,6 +50,10 @@ const propTypes = {
    * Title content
    */
   title: React.PropTypes.node,
+  /**
+   * Footer content
+   */
+  footer: React.PropTypes.node
 };
 
 const defaultProps = {
@@ -65,6 +69,7 @@ class Popover extends React.Component {
       arrowOffsetTop,
       arrowOffsetLeft,
       title,
+      footer,
       className,
       style,
       children,
@@ -108,6 +113,16 @@ class Popover extends React.Component {
         <div className={prefix(bsProps, 'content')}>
           {children}
         </div>
+
+        {this.props.footer ? this.renderFooter() : null}
+      </div>
+    );
+  },
+
+  renderFooter() {
+    return (
+      <div className={prefix(this.props, 'footer')}>
+        {this.props.footer}
       </div>
     );
   }

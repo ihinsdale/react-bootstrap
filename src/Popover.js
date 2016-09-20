@@ -114,15 +114,13 @@ class Popover extends React.Component {
           {children}
         </div>
 
-        {this.props.footer ? this.renderFooter() : null}
-      </div>
-    );
-  }
-
-  renderFooter() {
-    return (
-      <div className={prefix(this.props, 'footer')}>
-        {this.props.footer}
+        {
+          footer ?
+          <div className={prefix(bsProps, 'footer')}>
+            {footer}
+          </div> :
+          undefined
+        }
       </div>
     );
   }

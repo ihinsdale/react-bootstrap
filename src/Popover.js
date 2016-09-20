@@ -117,7 +117,7 @@ class Popover extends React.Component {
         {this.props.footer ? this.renderFooter() : null}
       </div>
     );
-  },
+  }
 
   renderFooter() {
     return (

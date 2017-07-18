@@ -30,6 +30,8 @@ const propTypes = {
   onExit: PropTypes.func,
   onExiting: PropTypes.func,
   onExited: PropTypes.func,
+
+  panelBodyStyle: PropTypes.object,
 };
 
 const defaultProps = {
@@ -123,7 +125,7 @@ class Panel extends React.Component {
     );
   }
 
-  renderBody(rawChildren, bsProps) {
+  renderBody(rawChildren, bsProps, panelBodyStyle) {
     const children = [];
     let bodyChildren = [];
 
@@ -136,7 +138,7 @@ class Panel extends React.Component {
 
       // Derive the key from the index here, since we need to make one up.
       children.push(
-        <div key={children.length} className={bodyClassName}>
+        <div key={children.length} className={bodyClassName} style={panelBodyStyle}>
           {bodyChildren}
         </div>
       );
@@ -180,6 +182,7 @@ class Panel extends React.Component {
       onExit,
       onExiting,
       onExited,
+      panelBodyStyle,
       ...props
     } = this.props;
 
@@ -209,9 +212,10 @@ class Panel extends React.Component {
         {collapsible ?
           this.renderCollapsibleBody(
             id, expanded, panelRole, children, bsProps,
-            { onEnter, onEntering, onEntered, onExit, onExiting, onExited }
+            { onEnter, onEntering, onEntered, onExit, onExiting, onExited },
+            panelBodyStyle
           ) :
-          this.renderBody(children, bsProps)
+          this.renderBody(children, bsProps, panelBodyStyle)
         }
 
         {footer && (
